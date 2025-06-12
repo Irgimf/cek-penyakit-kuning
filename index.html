@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Navbar Start -->
+    <nav class="navbar">
+      <a href="#" class="navbar-logo">Cep<span>Kuning</span>.</a>
+
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Penyakit Kuning</a>
+        <a href="#menu">Cek Penyakit Kuning</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="navbar-ekstra">
+        <a href="#menu" id="external-link"><i data-feather="external-link"></i></a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Hero Start -->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>Cek Penyakit <span>Kuning </span></h1>
+        <p>
+          Penyakit kuning paling sering ditemui dalam 2 minggu pertama bayi dan
+          merupakan penyebab umum bayi harus dirawat kembali setelah lahir.
+          Sekitar 60% bayi cukup bulan dan 80% bayi baru lahir prematur
+          mengalami penyakit kuning klinis pada minggu pertama setelah
+          kelahiran.
+        </p>
+        <a href="#menu" class="cta">Cek Sekarang</a>
+      </main>
+    </section>
+    <!-- Hero End -->
+
+    <!-- About Section Start -->
+    <section id="about" class="about">
+      <h2>Tentang Penyakit<span> Kuning</span></h2>
+
+      <div class="row">
+        <div class="about-img">
+          <img src="img/benjamin.jpg" alt="Tentang Kami" />
+        </div>
+        <div class="content">
+          <h3>Apa itu Penyakit Kuning?</h3>
+          <p>
+            Penyakit kuning (Ikterus) pada anak merupakan penyakit yang paling
+            sering ditemukan 2 minggu pertama setelah anak lahir. Dalam
+            mendiagnosis penyakit kuning pada anak diperlukan ketepatan dan
+            kecepatan untuk membantu orangtua dan tenaga medis di fasilitas
+            kesehatan tingkat pertama. Layanan ini digunakan untuk menentukan
+            seberapa urgensi penyakit yang dialami pasien, tindakan yang
+            diperlukan, dan juga rujukan perlunya pasien dirawat di rumah sakit
+            ataupun sebaliknya.
+          </p>
+          <p>
+            Website ini dibuat untuk membantu layanan kesehatan secara daring
+            dengan cara mendiagnosis penyakit kuning pada anak berdasarkan tanda
+            dan gejala dengan penggunaannya yang praktis dan tepat serta dapat diakses dengan mudah oleh orangtua
+            pasien.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- Menu Section Start -->
+    <section id="menu" class="menu">
+      <h2>Cek Penyakit <span>Kuning</span> Disini</h2>
+      <p>
+        Silahkan isi form dibawah ini sesuai dengan kondisi saat ini untuk
+        mendapatkan hasil yang akurat
+      </p>
+
+      <div class="row">
+        <div class="menu-card">
+          <img
+            src="img/1.jpg"
+            alt="cek-penyakit-kuning"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-title"><button onclick="openModal()">- Cek Disini -</button></h3>
+          <p class="menu-card-price">klik tombol diatas</p>
+        </div>
+      </div>
+    </section>
+    <!-- Menu Section End -->
+    <!-- Popup Modal -->
+    <div class="modal" id="diagnosisModal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+      <div id="question-container">
+    </div>
+  </div>
+</div>
+<!-- Popup Modal -->
+    <!-- Contact Section Start -->
+    <section id="contact" class="contact">
+      <h2>Kontak <span>Kami</span></h2>
+      <p>Silahkan hubungi kami jika ada pertanyaan Lebih Lanjut</p>
+
+      <div class="row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4605.405556011579!2d107.71507036699627!3d-6.932865431455989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c302db3434f5%3A0xdf4aacdb8618199c!2sUIN%20Sunan%20Gunung%20Djati%20Bandung!5e0!3m2!1sid!2sid!4v1747103105481!5m2!1sid!2sid"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map"
+        ></iframe>
+
+        <form action="">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="Nama" />
+          </div>
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="text" placeholder="No HP" />
+          </div>
+          <div class="input-group">
+            <i data-feather="help-circle"></i>
+            <input type="text" placeholder="Isi Pertanyaan Anda" />
+          </div>
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Start -->
+    <footer>
+      <div class="social">
+        <a href="https://www.facebook.com/"><i data-feather="facebook"></i></a>
+        <a href="https://x.com/"><i data-feather="twitter"></i></a>  
+        <a href="https://www.instagram.com/"><i data-feather="instagram"></i></a>
+        <a href="https://wa.me/6282317179877"><i data-feather="phone"></i></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Penyakit Kuning</a>
+        <a href="#menu">Cek Penyakit Kuning</a>
+        <a href="#contact">Kontak</a>
+       </div>
+      <div class="credit">
+  <p>Created by <a href="">Me and Friends</a> &copy; 2023.</p>
+</div>
+
+    <!--icons-->
+    <script>
+      feather.replace();
+    </script>
+
+    <!--my javascript-->
+    <script src="js/script.js"></script>
+  </body>
+</html>
