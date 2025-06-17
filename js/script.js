@@ -1,5 +1,3 @@
-const { act } = require("react");
-
 const navbarNav = document.querySelector(".navbar-nav");
 const hamburger = document.querySelector("#hamburger-menu");
 
@@ -189,24 +187,34 @@ function openModal() {
       <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
     </div>
     <input type="text" id="childWeight" placeholder="Berat Badan (gram), isi '-' jika tidak tahu">
-    <button class="answer-btn" onclick="startDiagnosis()">Mulai Diagnosa</button>
+    <button class="answer-btn" id="start-btn">Mulai Diagnosa</button>
   `;
+
+  // Tambahkan event listener secara eksplisit
+  document.getElementById("start-btn").addEventListener("click", startDiagnosis);
 }
 
-function startDiagnosis() {
-  const name = document.getElementById("childName").value.trim();
-  const age = document.getElementById("childAge").value.trim();
-  const weight = document.getElementById("childWeight").value.trim();
-  const gender = document.querySelector('input[name="gender"]:checked').value;
 
-  if (!name || !age || !weight) {
-    alert("Mohon lengkapi semua data terlebih dahulu.");
+
+function startDiagnosis() {
+  childInfo = {
+    name: document.getElementById("childName").value.trim(),
+    age: document.getElementById("childAge").value.trim(),
+    gender: document.querySelector('input[name="gender"]:checked')?.value,
+    weight: document.getElementById("childWeight").value.trim(),
+  };
+
+  if (!childInfo.name || !childInfo.age || !childInfo.gender || !childInfo.weight) {
+    alert("Mohon lengkapi semua data anak terlebih dahulu.");
     return;
   }
 
-  childInfo = { name, age, gender, weight };
-  showQuestion(0);
+  currentQuestion = 0;
+  showQuestion(currentQuestion);
 }
+
+
+
 
 
 function closeModal() {
@@ -214,7 +222,7 @@ function closeModal() {
   currentQuestion = 0;
 }
 
-container.innerHTML = `<h3>${q.question}</h3>`;
+
 
 function showQuestion(index) {
   const container = document.getElementById("question-container");
