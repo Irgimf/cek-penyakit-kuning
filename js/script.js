@@ -162,32 +162,97 @@ const questions = [
 ];
 
 let currentQuestion = 0;
+let childInfo = {}; // <--- Tambahkan ini
+
 
 function openModal() {
   document.getElementById("diagnosisModal").style.display = "block";
+  const container = document.getElementById("question-container");
+
+  container.innerHTML = `
+    <h3>Silakan isi data anak terlebih dahulu:</h3>
+    <input type="text" id="childName" placeholder="Nama Anak" required>
+    <input type="text" id="childAge" placeholder="Usia (bulan)" required>
+    <div style="margin: 10px 0;">
+      Jenis Kelamin: 
+      <label><input type="radio" name="gender" value="Laki-laki" checked> Laki-laki</label>
+      <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
+    </div>
+    <input type="text" id="childWeight" placeholder="Berat Badan (gram), isi '-' jika tidak tahu">
+    <button class="answer-btn" onclick="startDiagnosis()">Mulai Diagnosa</button>
+  `;
+}
+
+function startDiagnosis() {
+  const name = document.getElementById("childName").value.trim();
+  const age = document.getElementById("childAge").value.trim();
+  const weight = document.getElementById("childWeight").value.trim();
+  const gender = document.querySelector('input[name="gender"]:checked').value;
+
+  if (!name || !age || !weight) {
+    alert("Mohon lengkapi semua data terlebih dahulu.");
+    return;
+  }
+
+  childInfo = { name, age, gender, weight };
   showQuestion(0);
 }
+
 
 function closeModal() {
   document.getElementById("diagnosisModal").style.display = "none";
   currentQuestion = 0;
 }
 
+container.innerHTML = `<h3>${q.question}</h3>`;
+
 function showQuestion(index) {
   const container = document.getElementById("question-container");
   const q = questions[index];
-  container.innerHTML = `<h3>${q.question}</h3>`;
+
+  // Reset isi container
+  container.innerHTML = "";
+
+  // Tambahkan teks pertanyaan
+  const questionElement = document.createElement("h3");
+  questionElement.innerText = q.question;
+  container.appendChild(questionElement);
+
+  // Buat wrapper tombol
+  const buttonWrapper = document.createElement("div");
+  buttonWrapper.style.display = "flex";
+  buttonWrapper.style.gap = "10px";
+  buttonWrapper.style.marginTop = "20px";
+  buttonWrapper.style.flexWrap = "wrap";
+  buttonWrapper.style.justifyContent = "center";
+
+  // Tambahkan setiap tombol ke wrapper
   q.options.forEach((opt) => {
     const btn = document.createElement("button");
     btn.className = "answer-btn";
     btn.innerText = opt.text;
     btn.onclick = () => {
       if (opt.result) {
-        container.innerHTML = `<h3>Hasil Diagnosa:</h3><p>${opt.result}</p><button onclick="closeModal()" class="answer-btn">Tutup</button>`;
-      } else {
+  container.innerHTML = `
+    <h3>Data Anak:</h3>
+    <p><strong>Nama:</strong> ${childInfo.name}</p>
+    <p><strong>Usia:</strong> ${childInfo.age} bulan</p>
+    <p><strong>Jenis Kelamin:</strong> ${childInfo.gender}</p>
+    <p><strong>Berat Badan:</strong> ${childInfo.weight} gram</p>
+    <hr>
+    <h3>Hasil Diagnosa:</h3>
+    <p>${opt.result}</p>
+    <button onclick="closeModal()" class="answer-btn">Tutup</button>
+  `;
+}
+ else {
         showQuestion(opt.next);
       }
     };
-    container.appendChild(btn);
+    buttonWrapper.appendChild(btn);
   });
+
+  // Tambahkan wrapper tombol ke container
+  container.appendChild(buttonWrapper);
 }
+

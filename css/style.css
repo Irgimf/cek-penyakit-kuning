@@ -253,22 +253,45 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .modal-content {
-  color: #000;
-  background-color: #fff;
-  margin: 10% auto;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin: 15vh auto;
   padding: 30px;
   border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
+  width: 95vw;         /* Hampir selebar layar */
+  height: 80vh;        /* Hampir setinggi layar */
+  max-width: none;     /* Hilangkan batas lebar maksimum */
+  overflow-y: auto;    /* Supaya scroll muncul jika kontennya panjang */
   box-shadow: 0 0 10px #000;
   text-align: center;
   transition: all 0.3s ease;
 }
+
+#question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertikal */
+  align-items: center;     /* Horizontal */
+  height: 100%;            /* Isi penuh tinggi modal */
+  padding: 20px;
+  text-align: center;
+}
+#question-container input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
 
 .modal-content.show {
   animation: modalFadeIn 0.3s ease forwards;
