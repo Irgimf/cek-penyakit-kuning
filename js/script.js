@@ -1,18 +1,18 @@
-// Toggle class active
 const navbarNav = document.querySelector(".navbar-nav");
-// ketika hamburger menu diklik
-document.querySelector("#hamburger-menu").onclick = () => {
+const hamburger = document.querySelector("#hamburger-menu");
+
+hamburger.onclick = (e) => {
+  e.preventDefault(); // cegah scroll ke atas
   navbarNav.classList.toggle("active");
 };
 
-// klik diluar sidebar untuk menghilangkan nav
-const hamburger = document.querySelector("#hamburger-menu");
-
+// klik di luar nav untuk tutup menu
 document.addEventListener("click", function (e) {
   if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
     navbarNav.classList.remove("active");
   }
 });
+
 
 const questions = [
   {
@@ -233,17 +233,22 @@ function showQuestion(index) {
     btn.innerText = opt.text;
     btn.onclick = () => {
       if (opt.result) {
-  container.innerHTML = `
-    <h3>Data Anak:</h3>
-    <p><strong>Nama:</strong> ${childInfo.name}</p>
-    <p><strong>Usia:</strong> ${childInfo.age} bulan</p>
-    <p><strong>Jenis Kelamin:</strong> ${childInfo.gender}</p>
-    <p><strong>Berat Badan:</strong> ${childInfo.weight} gram</p>
-    <hr>
+ container.innerHTML = `
+  <div class="child-info">
+  <h2>Data Anak :</h2>
+    <p><strong>Nama :</strong> ${childInfo.name}</p>
+    <p><strong>Usia :</strong> ${childInfo.age}</p>
+    <p><strong>Jenis Kelamin :</strong> ${childInfo.gender}</p>
+    <p><strong>Berat Badan :</strong> ${childInfo.weight}</p>
+  </div>
+  <div class="diagnosis-result">
     <h3>Hasil Diagnosa:</h3>
     <p>${opt.result}</p>
-    <button onclick="closeModal()" class="answer-btn">Tutup</button>
-  `;
+  </div>
+  <button onclick="closeModal()" class="answer-btn">Tutup</button>
+`;
+
+
 }
  else {
         showQuestion(opt.next);
