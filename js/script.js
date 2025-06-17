@@ -170,7 +170,7 @@ const questions = [
 ];
 
 let currentQuestion = 0;
-let childInfo = {}; // <--- Tambahkan ini
+let childInfo = {}; 
 
 
 function openModal() {
@@ -190,7 +190,6 @@ function openModal() {
     <button class="answer-btn" id="start-btn">Mulai Diagnosa</button>
   `;
 
-  // Tambahkan event listener secara eksplisit
   document.getElementById("start-btn").addEventListener("click", startDiagnosis);
 }
 
@@ -276,7 +275,6 @@ function showQuestion(index) {
     buttonWrapper.appendChild(btn);
   });
 
-  // Tambahkan wrapper tombol ke container
   container.appendChild(buttonWrapper);
 }
 
