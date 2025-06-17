@@ -1,3 +1,5 @@
+const { act } = require("react");
+
 const navbarNav = document.querySelector(".navbar-nav");
 const hamburger = document.querySelector("#hamburger-menu");
 
@@ -34,7 +36,8 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result: "Kemungkinan atresia bilier. Rujuk ke spesialis bedah anak.",
+        result: "Dicurigai terdapat kondisi kelainan bawaan berupa penyumbatan saluran empedu (atresia bilier) yang bisa menyebabkan gangguan pembuangan bilirubin.",
+        action: "Perlu segera dirujuk ke dokter spesialis bedah anak untuk diagnosis dan penanganan lanjut.",
       },
       {
         text: "Tidak",
@@ -48,8 +51,8 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result:
-          "Inkompatibilitas ABO/rhesus. Lakukan commbtest di spesialis anak.",
+        result: "Inkompatibilitas ABO/rhesus.",
+        action: "Perlu dilakukan pemeriksaan kadar bilirubin total dan langsung untuk memastikan diagnosis. Jika kadar bilirubin tinggi, perlu rujukan ke dokter spesialis anak.",
       },
       { text: "Tidak", next: 6 },
     ],
@@ -69,7 +72,8 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result: "Kemungkinan infeksi TORCH. Rujuk ke spesialis anak.",
+        result: "Ada potensi bayi mengalami infeksi dari kelompok TORCH (Toxoplasma, Rubella, CMV, Herpes, dll) yang dapat ditularkan dari ibu saat hamil.",
+        action: "Segera lakukan rujukan ke dokter spesialis anak untuk pemeriksaan dan terapi yang tepat.",
       },
       {
         text: "Tidak",
@@ -82,7 +86,8 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result: "Kemungkinan penyakit turunan. Rujuk ke spesialis anak.",
+        result: "Diduga ada gangguan metabolik atau kelainan genetik bawaan pada bayi yang menyebabkan warna kuning.",
+        action: "Perlu dilakukan rujukan ke dokter spesialis anak untuk evaluasi dan diagnosis lebih lanjut.",
       },
       {
         text: "Tidak",
@@ -95,13 +100,13 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result:
-          "Breastmilk Jaundice. Pantau level bilirubin, pertimbangkan fototerapi.",
+        result: "Breastmilk Jaundice.",
+        action: "Ikterus pada bayi akibat menyusui memerlukan pemantauan lanjutan berupa berat badan dan kadar bilirubin. Jika bilirubin tinggi, pertimbangkan untuk memulai terapi sinar (fototerapi) sambil tetap memberikan ASI.",
       },
       {
         text: "Tidak",
-        result:
-          "Breastmilk Jaundice. Mengedukasi orang tua untuk menyusui dengan adekuat 8-12 kali sehari.",
+        result: "Breastmilk Jaundice. Kuning pada bayi kemungkinan karena kurangnya frekuensi menyusui.",
+        action: "Penting untuk melakukan evaluasi apakah bayi sudah menyusu 8–12 kali sehari sebagai upaya mengatasi kondisi kuning.",
       },
     ],
   },
@@ -110,13 +115,13 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result:
-          "Breastfeed Jaundice. Mengedukasi orangtua untuk menyusui dengan adekuat 8-12 kali sehari.",
+        result: "Breastfeed Jaundice.",
+        action: "Diperlukan evaluasi terhadap pola menyusui orangtua untuk memastikan bayi mendapat cukup ASI, idealnya dilakukan 8 sampai 12 kali sehari untuk membantu mengeluarkan bilirubin dari tubuh bayi.",
       },
       {
         text: "Tidak",
-        result:
-          "Kemungkinan kuning fisiologis (normal). Kuning hilang kurang dari 2 minggu",
+        result: "Kuning yang terjadi pada bayi kemungkinan merupakan kondisi normal yang sering terjadi pada bayi baru lahir (ikterus fisiologis)",
+        action: "biasanya tidak memerlukan pengobatan dan akan membaik dengan sendirinya. Dianjurkan untuk terus memantau perkembangan bayi dan memastikan bayi tetap menyusu dengan baik.",
       },
     ],
   },
@@ -125,7 +130,8 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result: "Hipotiroid. Lakukan screening tiroid (TSH)",
+        result: "Bayi mungkin mengalami gangguan fungsi tiroid bawaan (hipotiroidisme kongenital).",
+        action: "Disarankan untuk melakukan pemeriksaan kadar hormon TSH guna memastikan dan memulai penanganan sedini mungkin.",
       },
       {
         text: "Tidak",
@@ -138,11 +144,13 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result: "Kemungkinan pendarahan tersembunyi. Rujuk ke spesialis anak.",
+        result: "Kemungkinan pendarahan tersembunyi.",
+        action: "Disarankan untuk melakukan pemeriksaan kadar hemoglobin guna memastikan tidak ada perdarahan yang signifikan.",
       },
       {
         text: "Tidak",
-        result: "Kemungkinan polycythemia. Lakkukan tes hemoglobin.",
+        result: "Terdapat kemungkinan kondisi polycythemia, yaitu jumlah sel darah merah terlalu tinggi.",
+        action: "Disarankan untuk melakukan pemeriksaan kadar hemoglobin guna menentukan apakah ada kelebihan sel darah merah yang perlu ditangani.",
       },
     ],
   },
@@ -151,11 +159,13 @@ const questions = [
     options: [
       {
         text: "Ya",
-        result: "Sepsis. Lakukan tatalaksana sepsis. Pertimbangkan NICU/PICU.",
+        result: "Ada dugaan bayi mengalami infeksi berat atau sepsis.",
+        action: "Segera lakukan evaluasi menyeluruh untuk sepsis dan jika perlu dirawat intensif di unit NICU atau PICU agar mendapatkan perawatan optimal.",
       },
       {
         text: "Tidak",
-        result: "Infeksi lain. Temukan penyebab infeksi lain.",
+        result: "Kuning pada bayi mungkin disebabkan oleh infeksi selain TORCH atau sepsis.",
+        action: "Dibutuhkan pemeriksaan lebih lanjut untuk mengidentifikasi infeksi lain yang mungkin menjadi penyebab kondisi tersebut.",
       },
     ],
   },
@@ -244,9 +254,10 @@ function showQuestion(index) {
   <div class="diagnosis-result">
     <h3>Hasil Diagnosa:</h3>
     <p>${opt.result}</p>
-  </div>
-  <button onclick="closeModal()" class="answer-btn">Tutup</button>
-`;
+      <p><strong>Tindakan Lanjutan:</strong> ${opt.action || "Segera konsultasi ke dokter anak."}</p>
+    </div>
+    <button onclick="closeModal()" class="answer-btn">Tutup</button>
+  `;
 
 
 }
